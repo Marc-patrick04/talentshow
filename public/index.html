@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RP Musanze College - Talent Show Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-circle">
+                    <span class="logo-text">RP</span>
+                </div>
+                <div class="college-info">
+                    <h1>RP Musanze College</h1>
+                    <p>Talent Show Registration 2024</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="showDashboard()">View Applications</button>
+                <button class="btn btn-secondary" onclick="showStats()">View Statistics</button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Student Information</h2>
+                    <p>Please fill out all required fields to register for the talent show</p>
+                </div>
+
+                <form id="talentForm" class="talent-form">
+                    <!-- Personal Information Section -->
+                    <div class="form-section">
+                        <h3>Personal Details</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="studentId">Student ID <span class="required">*</span></label>
+                                <input type="text" id="studentId" name="studentId" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Information Section -->
+                    <div class="form-section">
+                        <h3>Academic Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="department">Department <span class="required">*</span></label>
+                                <select id="department" name="department" required>
+                                    <option value="">Select Department</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Business Administration">Business Administration</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Health Sciences">Health Sciences</option>
+                                    <option value="Agriculture">Agriculture</option>
+                                    <option value="Law">Law</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="yearOfStudy">Year of Study <span class="required">*</span></label>
+                                <select id="yearOfStudy" name="yearOfStudy" required>
+                                    <option value="">Select Year</option>
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Talent Information Section -->
+                    <div class="form-section">
+                        <h3>Talent Performance Details</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="talentType">Talent Type <span class="required">*</span></label>
+                                <select id="talentType" name="talentType" required>
+                                    <option value="">Select Talent Type</option>
+                                    <option value="Singing">Singing</option>
+                                    <option value="Dancing">Dancing</option>
+                                    <option value="Poetry">Poetry</option>
+                                    <option value="Comedy">Comedy</option>
+                                    <option value="Instrumental">Instrumental</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Magic">Magic</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="performanceTitle">Performance Title <span class="required">*</span></label>
+                                <input type="text" id="performanceTitle" name="performanceTitle" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="performanceDuration">Performance Duration (minutes) <span class="required">*</span></label>
+                                <input type="number" id="performanceDuration" name="performanceDuration" min="1" max="10" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="requiredEquipment">Required Equipment</label>
+                                <input type="text" id="requiredEquipment" name="requiredEquipment" placeholder="e.g., Microphone, Piano, etc.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="accompanimentNeeded" name="accompanimentNeeded">
+                                I need accompaniment
+                            </label>
+                            <div id="accompanimentDetails" style="display: none; margin-top: 10px;">
+                                <label for="accompanimentDetailsInput">Accompaniment Details</label>
+                                <textarea id="accompanimentDetailsInput" name="accompanimentDetails" rows="2" placeholder="Please specify what type of accompaniment you need"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information Section -->
+                    <div class="form-section">
+                        <h3>Additional Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="emergencyContactName">Emergency Contact Name</label>
+                                <input type="text" id="emergencyContactName" name="emergencyContactName">
+                            </div>
+                            <div class="form-group">
+                                <label for="emergencyContactPhone">Emergency Contact Phone</label>
+                                <input type="tel" id="emergencyContactPhone" name="emergencyContactPhone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="specialRequirements">Special Requirements</label>
+                            <textarea id="specialRequirements" name="specialRequirements" rows="3" placeholder="Any special needs or requirements for your performance"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="previousExperience">Previous Performance Experience</label>
+                            <textarea id="previousExperience" name="previousExperience" rows="3" placeholder="Describe any previous performance experience"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="availabilityNotes">Availability Notes</label>
+                            <textarea id="availabilityNotes" name="availabilityNotes" rows="3" placeholder="Any notes about your availability for rehearsals or the show"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset Form</button>
+                        <button type="submit" class="btn btn-primary">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 RP Musanze College. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Dashboard Modal -->
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Applications Dashboard</h2>
+            <div class="stats-summary">
+                <div class="stat-card">
+                    <h3>Total Applications</h3>
+                    <div class="stat-value" id="totalApps">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Approved</h3>
+                    <div class="stat-value approved" id="approvedApps">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending</h3>
+                    <div class="stat-value pending" id="pendingApps">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Rejected</h3>
+                    <div class="stat-value rejected" id="rejectedApps">0</div>
+                </div>
+            </div>
+            <div class="applications-list" id="applicationsList">
+                <!-- Applications will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Statistics</h2>
+            <div class="stats-container">
+                <div class="stats-section">
+                    <h3>By Talent Type</h3>
+                    <div id="talentTypeStats" class="stats-grid">
+                        <!-- Talent type stats will be loaded here -->
+                    </div>
+                </div>
+                <div class="stats-section">
+                    <h3>By Department</h3>
+                    <div id="departmentStats" class="stats-grid">
+                        <!-- Department stats will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
