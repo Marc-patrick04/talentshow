@@ -5,6 +5,10 @@
     {
       "src": "vercel-server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "api/static.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -13,8 +17,20 @@
       "dest": "vercel-server.js"
     },
     {
+      "src": "/public/(.*)",
+      "dest": "api/static.js"
+    },
+    {
+      "src": "/styles.css",
+      "dest": "api/static.js"
+    },
+    {
+      "src": "/script.js",
+      "dest": "api/static.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "vercel-server.js"
+      "dest": "api/static.js"
     }
   ],
   "env": {
