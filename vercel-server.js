@@ -19,11 +19,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files from public directory first
+// Serve static files from public directory
 app.use(express.static('public', {
     maxAge: '1d',
     etag: false,
-    fallthrough: false
+    index: false  // Don't serve index.html automatically
 }));
 
 // Handle API routes
@@ -31,8 +31,22 @@ app.get('/api/*', (req, res) => {
     res.status(404).json({ error: 'API route not found' });
 });
 
-// Serve index.html for all other routes (SPA fallback)
-app.get('*', (req, res) => {
+// Serve index.html for root and SPA routes
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Serve index.html for all other non-static routes (SPA fallback)
+app.get('*', (req, res, next) => {
+    // If it's a static file request, let express.static handle it
+    if (req.path.includes('.') && !req.path.startsWith('/api/')) {
+        return next();
+    }
+    // For SPA routes, serve index.html
     res.sendFile(__dirname + '/public/index.html');
 });
 
