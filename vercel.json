@@ -5,12 +5,24 @@
     {
       "src": "vercel-server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "api/_static.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)",
       "dest": "vercel-server.js"
+    },
+    {
+      "src": "/public/(.*)",
+      "dest": "api/_static.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "api/_static.js"
     }
   ],
   "env": {

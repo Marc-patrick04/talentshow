@@ -88,6 +88,3 @@ npm run vercel-dev
 - Check the logs in Vercel dashboard for any issues
 
 ## Cost:
-- **Vercel**: Free tier includes 100GB bandwidth/month
-- **Supabase**: Free tier includes 500MB database storage, 10GB bandwidth
-- Both are sufficient for a college talent show application

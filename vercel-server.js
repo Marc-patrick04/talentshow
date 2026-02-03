@@ -19,8 +19,26 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files from public directory
-app.use(express.static('public'));
+// Serve static files from public directory with proper headers
+app.use(express.static('public', {
+    maxAge: '1d',
+    etag: false,
+    setHeaders: (res, path) => {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        } else if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        }
+    }
+}));
+
+// Serve index.html for all routes (SPA fallback)
+app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api/')) {
+        return next();
+    }
+    res.sendFile(__dirname + '/public/index.html');
+});
 
 // Test database connection
 pool.query('SELECT NOW()', (err, res) => {

@@ -73,6 +73,7 @@ ORDER BY total_applications DESC;
 2. Copy your connection string (it will look like):
    ```
    postgresql://postgres:[YOUR-PASSWORD]@db.supabase.co:5432/postgres
+   [YOUR-PASSWORD]@db.supabase.co:5432/postgres
    ```
 
 ## Step 4: Configure Environment Variables
