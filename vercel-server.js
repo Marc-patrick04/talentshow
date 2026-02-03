@@ -19,17 +19,20 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files from public directory
+// Serve static files from public directory first
 app.use(express.static('public', {
     maxAge: '1d',
-    etag: false
+    etag: false,
+    fallthrough: false
 }));
 
-// Serve index.html for all non-API routes (SPA fallback)
+// Handle API routes
+app.get('/api/*', (req, res) => {
+    res.status(404).json({ error: 'API route not found' });
+});
+
+// Serve index.html for all other routes (SPA fallback)
 app.get('*', (req, res) => {
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).json({ error: 'API route not found' });
-    }
     res.sendFile(__dirname + '/public/index.html');
 });
 
